@@ -12,7 +12,7 @@ struct luaL_Reg nio[] = {
   {"serial_close", nio_serial_close},
 
   {"epoll_create", nio_epoll_create},
-  {"epoll_ctl", nio_epoll_ctl},
+  {"epoll_add", nio_epoll_add},
   {"epoll_wait", nio_epoll_wait},
 
   {NULL, NULL}

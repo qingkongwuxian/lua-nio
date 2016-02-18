@@ -4,7 +4,7 @@ local bit = require('bit')
 local tty = nio.serial_open('/dev/ttyUSB0', 115200)
 nio.set_non_blocking(tty)
 local epoll = nio.epoll_create()
-nio.epoll_ctl(epoll, tty, 1, 2147483649) -- 2147483649 means (EPOLLIN | EPOLLET)
+nio.epoll_add(epoll, tty, 1) -- 1: EPOLLIN 2: EPOLLOUT
 
 while true do
   local fs = nio.epoll_wait(epoll, -1)

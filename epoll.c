@@ -18,17 +18,29 @@ int nio_epoll_create(lua_State *L)
   return 1;
 }
 
-int nio_epoll_ctl(lua_State *L)
+int nio_epoll_add(lua_State *L)
 {
   int epollfd = luaL_checkint(L, 1);
   int fd = luaL_checkint(L, 2);
-  int op = luaL_checkint(L, 3);
-  long evt = luaL_checklong(L, 4);
+  int evt = luaL_checkint(L, 3);
+
+  uint32_t evts = EPOLLET;
+  switch(evt)
+  {
+    case 1:
+      evts |= EPOLLIN;
+      break;
+    case 2:
+      evts |= EPOLLOUT;
+      break;
+    default:
+      return luaL_error(L, "only 1(EPOLLIN) or 2(EPOLLOUT) allowed");
+  }
 
   struct epoll_event event;
   event.data.fd = fd;
-  event.events = (uint32_t)evt;
-  int ret = epoll_ctl(epollfd, op, fd, &event);
+  event.events = evts;
+  int ret = epoll_ctl(epollfd, EPOLL_CTL_ADD, fd, &event);
   if(ret == -1)
     return luaL_error(L, "epoll_ctl: %s", strerror(errno));
 

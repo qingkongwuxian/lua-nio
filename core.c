@@ -39,7 +39,7 @@ int nio_read(lua_State *L)
 {
   int fd = luaL_checkint(L, 1);
 
-  size_t avail;
+  unsigned int avail;
   ioctl(fd, FIONREAD, &avail);
   if(avail > 0)
   {

@@ -21,6 +21,6 @@ int nio_epoll_create(lua_State *L);
 
 int nio_epoll_wait(lua_State *L);
 
-int nio_epoll_ctl(lua_State *L);
+int nio_epoll_add(lua_State *L);
 
 #endif
