@@ -17,6 +17,7 @@ nio.open(file, flag)
 
 <b>示例</b>
 local nio = require('nio')
+
 local fd = nio.open('/tmp/foo', 1)
 </pre>
 
@@ -29,6 +30,7 @@ nio.set_non_blocking(fd)
 
 <b>示例</b>
 local nio = require('nio')
+
 local fd = nio.open('/tmp/foo', 1)
 nio.set_non_blocking(fd)
 </pre>
@@ -43,6 +45,7 @@ nio.read(fd)
 
 <b>示例</b>
 local nio = require('nio')
+
 local fd = nio.open('/tmp/foo', 1)
 nio.set_non_blocking(fd)
 local s = nio.read(fd)
@@ -57,6 +60,7 @@ nio.close(fd)
 
 <b>示例</b>
 local nio = require('nio')
+
 local fd = nio.open('/tmp/foo', 1)
 nio.close(fd)
 </pre>
@@ -70,6 +74,7 @@ nio.serial_open(file, baudrate)
 
 <b>示例</b>
 local nio = require('nio')
+
 local tty = nio.serial_open('/dev/ttyUSB0', 115200)
 </pre>
 
@@ -82,6 +87,7 @@ nio.serial_close(fd)
 
 <b>示例</b>
 local nio = require('nio')
+
 local tty = nio.serial_open('/dev/ttyUSB0', 115200)
 nio.serial_close(tty)
 </pre>
@@ -95,6 +101,7 @@ nio.epoll_create()
 
 <b>示例</b>
 local nio = require('nio')
+
 local epoll = nio.epoll_create()
 </pre>
 
@@ -111,6 +118,7 @@ nio.epoll_add(epoll, fd, event)
 
 <b>示例</b>
 local nio = require('nio')
+
 local tty = nio.serial_open('/dev/ttyUSB0', 115200)
 nio.serial_close(tty)
 local epoll = nio.epoll_create()
@@ -131,6 +139,8 @@ nio.epoll_wait(epoll, timeout)
 
 <b>示例</b>
 local nio = require('nio')
+local bit = require('bit')
+
 local tty = nio.serial_open('/dev/ttyUSB0', 115200)
 nio.serial_close(tty)
 local epoll = nio.epoll_create()
