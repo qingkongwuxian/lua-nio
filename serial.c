@@ -12,7 +12,7 @@ struct termios oldtio;
 int nio_serial_open(lua_State *L)
 {
   const char *tty = luaL_checkstring(L, 1);
-  int speed = luaL_checkint(L, 2);
+  int baudrate = luaL_checkint(L, 2);
 
   int fd = open(tty, O_RDWR | O_NOCTTY);
   if(fd == -1)
@@ -21,7 +21,7 @@ int nio_serial_open(lua_State *L)
   if(tcgetattr(fd, &oldtio) != 0)
     return luaL_error(L, "tcgetattr: %s", strerror(errno));
   bzero(&newtio, sizeof(newtio));
-  newtio.c_cflag = speed | CRTSCTS | CS8 | CLOCAL | CREAD;
+  newtio.c_cflag = baudrate | CRTSCTS | CS8 | CLOCAL | CREAD;
   newtio.c_iflag = IGNPAR | ICRNL;
   newtio.c_oflag = 0;
   newtio.c_lflag = ICANON;
