@@ -1,5 +1,5 @@
 # 摘要
-<pre>关于epoll，串口等操作的Lua封装</pre>
+<pre>关于epoll，串口, TCP, UDP等操作的Lua封装</pre>
 
 # 函数说明
 
