@@ -6,7 +6,7 @@ local sock = nio.tcp()
 local epoll = nio.epoll_create()
 
 local connected = true
-local ret, err = nio.connect(sock, 's1.weiyouba.cn', 80)
+local ret, err = nio.connect(sock, 'www.baidu.com', 80)
 if ret == -1 and err == const.EINPROGRESS then
   connected = false
 end
